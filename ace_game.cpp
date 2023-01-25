@@ -1,5 +1,13 @@
+/*
+ * The AXE Game
+ * Made by Lukas Kalan
+ * 
+ */
+
 #include "raylib.h"
 int main()
 {
-    InitWindow(450, 300, "Lukas's Window");
+    int width;
+    width = 350;
+    InitWindow(width, 300, "Lukas's Window");
 }
