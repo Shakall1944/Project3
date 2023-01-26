@@ -8,14 +8,18 @@
 int main()
 {
     // Declaration of variables - window dimensions
-    int width{350};
-    int height{200};
+    int width{800};
+    int height{450};
     //Running raylib
     InitWindow(width, height, "Lukas's Window");
 
     //circle coordinates
-    int circle_x{175};
-    int circle_y{100};
+    int circle_x{200};
+    int circle_y{200};
+
+    //Axe coordinates
+    int axe_x{400};
+    int axe_y{0};
     
     SetTargetFPS(60);
     while ( WindowShouldClose() == false )
@@ -25,18 +29,22 @@ int main()
 
         //Game login begins!
         DrawCircle(circle_x, circle_y, 25, BLUE);
+        DrawRectangle(axe_x, axe_y, 50, 50, RED);
+
+        // move the axe
+        axe_y += 10;
 
         if (IsKeyDown(KEY_D) && circle_x < 350 )
         {
-            circle_x = circle_x + 10;
+            circle_x += 10;
         }
         
         if (IsKeyDown(KEY_A) && circle_x > 0 )
         {
-            circle_x = circle_x - 10;
+            circle_x -= 10;
         }
         
-        if (IsKeyDown(KEY_W))
+        /*if (IsKeyDown(KEY_W))
         {
             circle_y = circle_y - 10;
         }
@@ -44,7 +52,7 @@ int main()
         if (IsKeyDown(KEY_S))
         {
             circle_y = circle_y + 10;
-        }
+        }*/
         
         //Game logic ends!
         EndDrawing();
