@@ -13,7 +13,7 @@ int main()
     //Running raylib
     InitWindow(width, 300, "Lukas's Window");
     
-    while (true)
+    while ( WindowShouldClose() == false )
     {
         BeginDrawing();
         ClearBackground(RED);
