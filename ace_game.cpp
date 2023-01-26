@@ -15,7 +15,9 @@ int main()
     
     while (true)
     {
-        /* code */
+        BeginDrawing();
+        ClearBackground(RED);
+        EndDrawing();
     }
     
 }
