@@ -39,7 +39,7 @@ int main()
                     (u_axe_y <= b_circle_y) && 
                     (l_axe_x <= r_circle_x) && 
                     (r_axe_x >= l_circle_x);
-
+    // Axe move variable
     int direction{10};
     
     SetTargetFPS(40);
@@ -82,7 +82,7 @@ int main()
             direction = -direction;
         }
         
-
+        // Define keys how to move of circle
         if (IsKeyDown(KEY_D) && circle_x < width )
         {
             circle_x += 10;
@@ -92,9 +92,7 @@ int main()
         {
             circle_x -= 10;
         }
-        
-
-        
+           
         //Game logic ends!
         }
         EndDrawing();
