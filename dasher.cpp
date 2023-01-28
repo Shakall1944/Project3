@@ -12,10 +12,15 @@ int main()
     //
     InitWindow(windowsWidth, windowsHeight, "Lukas's game!");
 
-    // accelaration due to gravity (pixel/frame)/frame
+    // accelaration due to gravity (pixel/frame)/frame + variable for jump
     const int gravity{1};
     const int jumpVel{-22};
-    bool isInAir(false);
+    bool isInAir{false};
+
+    //
+    Texture2D scarfy = LoadTexture("textures/scarfy.png");
+    Rectangle scarfyRec;
+    Vector2 scarfyPos;
 
     // rectangle dimenstions
     const int width(50);
