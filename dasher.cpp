@@ -32,19 +32,23 @@ int main()
     scarfyPos.x = windowsWidth/2 - scarfyRec.width/2;
     scarfyPos.y = windowsHeight - scarfyRec.height;
 
+     // animation frame of scarfy
+    int frame{};
+    // amount of time before we update the animation frame of scarfy
+    const float updateTime{1.0/12.0};
+    float runningTime{};
+
     // nebula texture2D
     Texture2D nebula = LoadTexture("textures/12_nebula_spritesheet.png");
     Rectangle nebRec{0.0, 0.0, nebula.width/8, nebula.height/8};
     Vector2 nebPos{windowsWidth, windowsHeight - nebRec.height};
     //nebula x velocity (pixels/second)
-    int nebVel{-600};
-
-
-    // animation frame
-    int frame{};
-    // amount of time before we update the animation frame
-    const float updateTime{1.0/12.0};
-    float runningTime{};
+    int nebVel{-200};
+    // annimation frame of nebula
+    int nebFrame{};
+    // amount of time before we update the animation frame of nebula
+    const float nebUpdateTime{1.0/12.0};
+    float nebRunningTime{};
 
     // rectangle dimenstions
     //const int width(50);
@@ -89,19 +93,33 @@ int main()
         //check if scarfy is in the air, if yes do the animation 
         if (isInAir == false)
         {
-            //update running time
+            //update running time of scarfy
             runningTime += dT;
             if (runningTime >= updateTime)
             {
-            runningTime = 0.0;
-            //update animation frame
-            scarfyRec.x = frame * scarfyRec.width;
-            frame++;
-                if ( frame > 5)
-                {
-                frame = 0;
-                }
+                runningTime = 0.0;
+                //update animation frame of scarfy
+                scarfyRec.x = frame * scarfyRec.width;
+                frame++;
+                    if ( frame > 5)
+                    {
+                    frame = 0;
+                    }
             }
+        }
+
+        //update running time of nebula
+        nebRunningTime += dT;
+        if (nebRunningTime >= nebUpdateTime)
+        {
+            nebRunningTime = 0.0;
+            //update animation frame of nebula
+            nebRec.x = nebFrame * nebRec.width;
+            nebFrame++;
+            if ( nebFrame > 7)
+                {
+                nebFrame = 0;
+                }
         }
         
         // draw nebula
