@@ -14,6 +14,31 @@ struct AnimDate
     float runningTime;
 };
 
+// function for ground check
+bool isOnGround(AnimDate data, int windowHeight)
+{
+    return data.pos.y >= windowHeight - data.rec.height;
+}
+
+// funtion for update of AnimData 
+AnimDate updateAnimData(AnimDate data, float deltaTime, int maxFrame)
+{
+    // update running time
+    data.runningTime += deltaTime;
+    if (data.runningTime >= data.updateTime)
+        {
+            data.runningTime = 0.0;
+            //update animation frame
+            data.rec.x = data.frame * data.rec.width;
+            data.frame++;
+            if (data.frame > maxFrame)
+            {
+                data.frame = 0;
+            }
+            
+        }
+    return data;
+}
 
 int main()
 {
@@ -162,7 +187,7 @@ int main()
         const float dT{GetFrameTime()};
 
         // ground check
-        if (scarfyData.pos.y >= windowDimensions[1] - scarfyData.rec.height)
+        if (isOnGround(scarfyData, windowDimensions[1]))
         {
             // rectangle is on the ground
             velocity = 0;
@@ -192,7 +217,8 @@ int main()
         //check if scarfy is in the air, if yes do the animation 
         if (isInAir == false)
         {
-            //update running time of scarfy
+            // OLD CODE - refactoring animation to function
+            /*//update running time of scarfy
             scarfyData.runningTime += dT;
             if (scarfyData.runningTime >= scarfyData.updateTime)
             {
@@ -204,13 +230,17 @@ int main()
                     {
                          scarfyData.frame = 0;
                     }
-            }
+            }*/
+
+            //new code with calling updateAnimdata function for animation
+            scarfyData = updateAnimData(scarfyData, dT, 5);
         }
 
         // for loop for animation of nebulas
         for (int i = 0; i < sizeOfNebulae; i++)
         {
-            //update running time of nebula
+            //OLD CODE - refactoring animation to funtion
+            /*//update running time of nebula
             nebulae[i].runningTime += dT;
             if (nebulae[i].runningTime >= nebulae[i].updateTime)
             {
@@ -222,7 +252,10 @@ int main()
                 {
                  nebulae[i].frame = 0;
                 }
-            }
+            }*/
+
+            //new code with calling updateAnimdata function for animation
+            nebulae[i] = updateAnimData(nebulae[i], dT, sizeOfNebulae);
         }
         // draw each nebula with for loops
         for (int i = 0; i < sizeOfNebulae; i++)
