@@ -44,7 +44,7 @@ int main()
 {
     //1st Array - Set dimension of window
     int  windowDimensions[2];
-    windowDimensions[0] = 800; // width
+    windowDimensions[0] = 700; // width
     windowDimensions[1] = 450; // height
     /* OLD CODe - Set dimension of window 
     const int windowsWidth{800};
@@ -175,16 +175,26 @@ int main()
     //int posY(windowsHeight - height);
     int velocity{0};
    
+    // Texture initialization for background
+    Texture2D background = LoadTexture("textures/far-buildings.png");
+    float bgX{};
 
     SetTargetFPS(60);
     while (!WindowShouldClose())
     {
+        // delta time variable - time since last frame
+        const float dT{GetFrameTime()};
+        
         // Start drawing
         BeginDrawing();
         ClearBackground(WHITE);
 
-        // delta time variable - time since last frame
-        const float dT{GetFrameTime()};
+        // variable for scrolling backround
+        bgX -= 20 * dT;
+
+        // draw the background
+        Vector2 bgPos{bgX, 0.0};
+        DrawTextureEx(background, bgPos, 0.0, 3.0, WHITE);
 
         // ground check
         if (isOnGround(scarfyData, windowDimensions[1]))
@@ -271,6 +281,7 @@ int main()
     }
     UnloadTexture(scarfy);
     UnloadTexture(nebula);
+    UnloadTexture(background);
     CloseWindow();
     
 }
