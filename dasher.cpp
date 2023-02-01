@@ -350,7 +350,7 @@ int main()
         
         else
         {
-        // draw each nebula with for loops
+        // draw each nebula with "for" loop
         for (int i = 0; i < sizeOfNebulae; i++)
         {
             DrawTextureRec(nebula, nebulae[i].rec, nebulae[i].pos, WHITE);
