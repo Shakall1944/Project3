@@ -359,11 +359,9 @@ int main()
             DrawTextureRec(scarfy, scarfyData.rec, scarfyData.pos, WHITE);
         }  
     
-
-
         
-            //Stop drawing
-            EndDrawing();
+        //Stop drawing
+        EndDrawing();
     }
     UnloadTexture(scarfy);
     UnloadTexture(nebula);
